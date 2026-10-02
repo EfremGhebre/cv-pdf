@@ -28,3 +28,15 @@ Each language version has the same overall layout and can be opened directly in 
 - This is a static project (HTML + CSS only).
 - No installation or dependencies are required.
 - To update content, edit the relevant HTML file.
+
+## Portfolio Sync Automation
+
+This repo can notify the portfolio repository when CV files change.
+
+- Workflow: `.github/workflows/notify-portfolio-sync.yml`
+- Target repo: `EfremGhebre/efrem-ghebre`
+- Event type: `cv-pdf-updated`
+
+Required repository secret in this repo:
+
+- `PORTFOLIO_SYNC_TOKEN`: Personal access token with permission to dispatch events to the portfolio repository.
