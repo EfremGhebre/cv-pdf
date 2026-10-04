@@ -1,0 +1,25 @@
+name: Notify Portfolio CV Sync
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "cv.en.html"
+      - "cv.sv.html"
+      - "cv.css"
+      - "images/**"
+      - ".github/workflows/notify-portfolio-sync.yml"
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send repository dispatch to portfolio repo
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.PORTFOLIO_SYNC_TOKEN }}
+          repository: EfremGhebre/efrem-ghebre
+          event-type: cv-pdf-updated
+          client-payload: '{"source_repo":"EfremGhebre/cv-pdf","source_sha":"${{ github.sha }}"}'
